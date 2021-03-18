@@ -1,0 +1,29 @@
+{
+  "name": "love-eletter",
+  "version": "1.0.0",
+  "description": "Digital version of Love Letter",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brendonbarreto/love-eletter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brendonbarreto/love-eletter/issues"
+  },
+  "homepage": "https://github.com/brendonbarreto/love-eletter#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@types/jest": "^26.0.21",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3"
+  }
+}
