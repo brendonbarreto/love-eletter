@@ -129,7 +129,7 @@ export const getCards = () => [
 ]
 
 export const is = (card, character) => {
-   const cardToCompare = getCardByCharacter(character)
+  const cardToCompare = getCardByCharacter(character)
 
   return ['character', 'copies', 'value'].every(key => card[key] === cardToCompare[key])
 }
