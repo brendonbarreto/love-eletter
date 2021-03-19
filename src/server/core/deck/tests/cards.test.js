@@ -1,11 +1,10 @@
-import { Character, getCardByCharacter, is, getCardByValue, getCards, getSpy } from '../cards';
-
+import { Character, getCardByCharacter, is, getCardByValue, getCards, getSpy } from '../cards'
 
 describe('cards', () => {
   describe('getCardByCharacter', () => {
     it.each(Object.values(Character))('should return %p', character => {
       const card = getCardByCharacter(character)
-    
+
       expect(is(card, character)).toBe(true)
     })
   })
@@ -13,7 +12,7 @@ describe('cards', () => {
   describe('getCardByValue', () => {
     it.each(getCards().map(card => [card.character, card.value]))('should return %p when value is %p', (character, value) => {
       const card = getCardByValue(value)
-    
+
       expect(is(card, character)).toBe(true)
     })
   })
@@ -21,7 +20,7 @@ describe('cards', () => {
   describe('getCards', () => {
     it.each(Object.values(Character))('should include %p card', character => {
       const cards = getCards()
-    
+
       expect(cards.map(card => card.character)).toContain(character)
     })
   })
