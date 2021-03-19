@@ -1,5 +1,3 @@
-import { isDeepStrictEqual } from 'util'
-
 export const Character = {
   SPY: 'Spy',
   GUARD: 'Guard',
@@ -13,7 +11,7 @@ export const Character = {
   PRINCESS: 'Princess'
 }
 
-export const spy = {
+export const getSpy = () => ({
   character: Character.SPY,
   rules: [
       'A Spy has no effect when played or discarded.',
@@ -23,27 +21,27 @@ export const spy = {
   ],
   copies: 2,
   value: 0
-}
+})
 
-export const guard = {
+export const getGuard = () => ({
   character: Character.GUARD,
   rules: [
       'Choose another player and name a character other than Guard. If the chosen player has that card in their hand, they are out of the round.'
   ],
   copies: 6,
   value: 1
-}
+})
 
-export const priest = {
+export const getPriest = () => ({
   character: Character.PRIEST,
   rules: [
       'Choose another player and secretly look at their hand (without revealing it to anyone else).'
   ],
   copies: 2,
   value: 2
-}
+})
 
-export const baron = {
+export const getBaron = () => ({
   character: Character.BARON,
   rules: [
       'Choose another player. You and that player secretly compare your hands. Whoever has the lower value card is out of the round.',
@@ -51,9 +49,9 @@ export const baron = {
   ],
   copies: 2,
   value: 3
-}
+})
 
-export const handmaid = {
+export const getHandmaid = () => ({
   character: Character.HANDMAID,
   rules: [
       'Until the start of your next turn, other players cannot choose you for their card effects.',
@@ -63,9 +61,9 @@ export const handmaid = {
   ],
   copies: 2,
   value: 4
-}
+})
 
-export const prince = {
+export const getPrince = () => ({
   character: Character.PRINCE,
   rules: [
       'Choose any player (including yourself). That player discards their hand (without resolving its effect) and draws a new hand.',
@@ -74,9 +72,9 @@ export const prince = {
   ],
   copies: 2,
   value: 5
-}
+})
 
-export const chancellor = {
+export const getChancellor = () => ({
   character: Character.CHANCELLOR,
   rules: [
       'Draw two cards from the deck into your hand. Choose and keep one of the three cards now in your hand, and place the other two facedown on the bottom of the deck in any order.',
@@ -84,18 +82,18 @@ export const chancellor = {
   ],
   copies: 2,
   value: 6
-}
+})
 
-export const king = {
+export const getKing = () => ({
   character: Character.KING,
   rules: [
       'Choose another player and trade hands with that player.'
   ],
   copies: 1,
   value: 7
-}
+})
 
-export const countess = {
+export const getCountess = () => ({
   character: Character.COUNTESS,
   rules: [
       'The Countess has no effect when played or discarded.',
@@ -106,31 +104,35 @@ export const countess = {
   ],
   copies: 1,
   value: 8
-}
+})
 
-export const princess = {
+export const getPrincess = () => ({
   character: Character.PRINCESS,
   rules: [
       'If you either play or discard the Princess for any reason, you are immediately out of the round.'
   ],
   copies: 1,
   value: 9
-}
+})
 
 export const getCards = () => [
-  { ...spy },
-  { ...guard },
-  { ...priest },
-  { ...baron },
-  { ...handmaid },
-  { ...prince },
-  { ...chancellor },
-  { ...king },
-  { ...countess },
-  { ...princess }
+  getSpy(),
+  getGuard(),
+  getPriest(),
+  getBaron(),
+  getHandmaid(),
+  getPrince(),
+  getChancellor(),
+  getKing(),
+  getCountess(),
+  getPrincess()
 ]
 
-export const is = (card, character) => isDeepStrictEqual(card, getCardByCharacter(character))
+export const is = (card, character) => {
+  const cardToCompare = getCardByCharacter(character)
+
+  return ['character', 'copies', 'value'].every(key => card[key] === cardToCompare[key])
+}
 
 export const getCardByCharacter = cardCharacter => getCards().find(card => card.character === cardCharacter)
 
