@@ -1,8 +1,20 @@
-import cards from '../cards';
+import { Character, getCardByCharacter, is, getCardByValue, getCards } from '../cards';
 
-it('should includes Spy', () => {
-  const spy = cards.find(a => a.name === 'Spy')
 
-  expect(spy.level).toBe(0)
-  expect(spy.copies).toBe(2)
-});
+describe('cards', () => {
+  describe('getCardByCharacter', () => {
+    it.each(Object.values(Character))('should return %p', character => {
+      const card = getCardByCharacter(character)
+    
+      expect(is(card, character)).toBe(true)
+    })
+  })
+
+  describe('getCardByValue', () => {
+    it.each(getCards().map(card => [card.character, card.value]))('should return %p when value is %p', (character, value) => {
+      const card = getCardByValue(value)
+    
+      expect(is(card, character)).toBe(true)
+    })
+  })
+})
