@@ -8,10 +8,20 @@ export const getNewDeck = () => {
 }
 
 export const pickCardFromTop = deck => {
-  const deckCopy = [...deck]
+  const cardsFromTop = pickCardsFromTop(deck, 1)
 
   return {
-    card: { ...deckCopy.pop() },
+    card: cardsFromTop.cards[0],
+    remaining: cardsFromTop.remaining
+  }
+}
+
+export const pickCardsFromTop = (deck, quantity) => {
+  const deckCopy = [...deck]
+  const cardsPicked = deckCopy.splice(deck.length - quantity, quantity)
+
+  return {
+    cards: cardsPicked.map(card => ({ ...card })),
     remaining: deckCopy
   }
 }

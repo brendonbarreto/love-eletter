@@ -1,0 +1,21 @@
+{
+  "players": [
+    {
+      "hand": ["cards"],
+      "who": "character",
+      "faceup": ["cards"]
+    }
+  ],
+  "turns": [
+    {
+      "player": {},
+      "deck": {},
+      "action": {
+        "card": {},
+        "data": {}
+      }
+    }
+  ],
+  "removedCard": "card",
+  "deck": "deck"
+}
