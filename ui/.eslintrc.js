@@ -14,6 +14,7 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
+    'react/jsx-indent': ['error', 2]
   },
   plugins: ['jest']
 }
