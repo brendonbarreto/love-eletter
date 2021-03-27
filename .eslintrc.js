@@ -5,7 +5,8 @@ module.exports = {
     'jest/globals': true
   },
   extends: [
-    'standard'
+    'standard',
+    'plugin:react/recommended'
   ],
   parserOptions: {
     ecmaVersion: 12,
