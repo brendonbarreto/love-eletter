@@ -10,6 +10,7 @@
     "test:server": "cd server && npm test",
     "test:ui": "cd ui && npm test",
     "test": "npm run test:server && npm run test:ui",
+    "lint:ui": "cd ui && npm run lint",
     "lint": "cd server && npm run lint"
   },
   "repository": {
