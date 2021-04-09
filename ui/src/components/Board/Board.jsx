@@ -5,12 +5,12 @@ import Deck from '../Deck'
 
 const Board = () =>
   <div className={cx(styles.board, styles.fourPlayers)}>
-    <Opponent />
+    <Opponent name="Brendon Barreto" tokens={1} />
     <div className={styles.container}>
-      <Opponent />
+      <Opponent name="Édina de Oliveira" tokens={5} />
       <Deck />
     </div>
-    <Opponent />
+    <Opponent name="Israel Fonseca" tokens={0} />
   </div>
 
 export default Board
