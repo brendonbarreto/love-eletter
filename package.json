@@ -28,5 +28,9 @@
   "homepage": "https://github.com/brendonbarreto/love-eletter#readme",
   "devDependencies": {
     "node-sass": "^5.0.0"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "react-icons": "^4.2.0"
   }
 }

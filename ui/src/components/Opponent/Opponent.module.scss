@@ -1,0 +1,57 @@
+.opponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatarAndTokens {
+  display: flex;
+  justify-content: center;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.token {
+  width: 10px;
+  height: 10px;
+  background: #fd79a8;
+  border-radius: 50%;
+  margin-bottom: 2px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background: #0984e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+}
+
+.enemyCards div {
+  padding: 10px;
+  width: 150px;
+  color: white;
+}
+
+.spy {
+  background: #00b894;
+}
+
+.guard {
+  background: #ff7675;
+}
+
+.enemyCards div:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+.enemyCards div:last-child {
+  border-radius: 0 0 5px 5px;
+}

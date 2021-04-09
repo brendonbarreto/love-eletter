@@ -1,0 +1,10 @@
+.board.fourPlayers {
+  display: flex;
+  align-items: flex-end;
+}
+
+.board.fourPlayers .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
