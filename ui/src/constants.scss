@@ -1,0 +1,50 @@
+$spy-color: #00b894 !default;
+$guard-color: #ff7675 !default;
+$priest-color: #a29bfe !default;
+$baron-color: #fdcb6e !default;
+$handmaid-color: #fd79a8 !default;
+$prince-color: #74b9ff !default;
+$chancellor-color: #e17055 !default;
+$king-color: #6c5ce7 !default;
+$countess-color: #2d3436 !default;
+$princess-color: #00cec9 !default;
+
+.spy {
+  background: $spy-color;
+}
+
+.guard {
+  background: $guard-color;
+}
+
+.priest {
+  background: $priest-color;
+}
+
+.baron {
+  background: $baron-color;
+}
+
+.handmaid {
+  background: $handmaid-color;
+}
+
+.prince {
+  background: $prince-color;
+}
+
+.chancellor {
+  background: $chancellor-color;
+}
+
+.king {
+  background: $king-color;
+}
+
+.countess {
+  background: $countess-color;
+}
+
+.princess {
+  background: $princess-color;
+}

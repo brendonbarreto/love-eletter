@@ -1,13 +1,18 @@
+import cx from 'classnames'
 import styles from './Hand.module.scss'
-import spyIcon from '../../cardIcons/spy.svg'
+import getIconByCharacter from '../../cardIcons/getIconByCharacter'
 
-const Hand = () => (
+const Hand = ({ cards }) => (
   <div className={styles.hand}>
-    <div className={styles.card}>
-      <div>Spy</div>
-      <div className={styles.value}>0</div>
-      <img width="50px" src={spyIcon} alt="shhu"/>
-    </div>
+    {
+      cards.map((card, index) => (
+        <div key={index} className={cx(styles.card, styles[card.character.toLowerCase()])}>
+          <p>{card.character}</p>
+          <div className={styles.value}>{card.value}</div>
+          <img width="50px" src={getIconByCharacter(card.character)} alt="shhu"/>
+        </div>
+      ))
+    }
   </div>
 )
 
