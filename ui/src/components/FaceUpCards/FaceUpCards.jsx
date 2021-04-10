@@ -1,19 +1,14 @@
 import styles from './FaceUpCards.module.scss'
 
-const FaceUpCards = () => (
+const FaceUpCards = ({ cards }) => (
   <div className={styles.faceUpCards}>
-    <div className={styles.spy}>
-      <span>0 - Spy</span>
-    </div>
-    <div className={styles.guard}>
-      <span>1 - Guard</span>
-    </div>
-    <div className={styles.guard}>
-      <span>1 - Guard</span>
-    </div>
-    <div className={styles.guard}>
-      <span>1 - Guard</span>
-    </div>
+    {
+          cards.map((card, key) => (
+            <div key={key} className={styles[card.character.toLowerCase()]}>
+              <span>{card.value} - {card.character}</span>
+            </div>
+          ))
+      }
   </div>
 )
 

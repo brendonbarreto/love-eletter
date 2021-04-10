@@ -9,7 +9,18 @@ const Game = () => (
   <div className={styles.game}>
     <Board />
 
-    <FaceUpCards />
+    <FaceUpCards cards={[
+      {
+        character: Character.PRINCE,
+        value: 5
+      }, {
+        character: Character.SPY,
+        value: 0
+      }, {
+        character: Character.KING,
+        value: 7
+      }
+    ]} />
 
     <Hand cards={[{
       character: Character.SPY,

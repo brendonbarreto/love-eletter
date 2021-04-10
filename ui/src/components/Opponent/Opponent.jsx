@@ -1,5 +1,6 @@
 import styles from './Opponent.module.scss'
 import FaceUpCards from '../FaceUpCards'
+import { Character } from '../../cards'
 
 const renderTokens = tokens => {
   if (!tokens) return null
@@ -20,7 +21,15 @@ const Opponent = ({ name, tokens }) => (
       {renderTokens(tokens)}
     </div>
     <p>{name}</p>
-    <FaceUpCards />
+    <FaceUpCards cards={[
+      {
+        character: Character.PRIEST,
+        value: 2
+      }, {
+        character: Character.BARON,
+        value: 3
+      }
+    ]} />
   </div>
 )
 

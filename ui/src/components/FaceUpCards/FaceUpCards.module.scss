@@ -1,3 +1,5 @@
+@import 'src/constants';
+
 .faceUpCards div {
   padding: 10px;
   width: 150px;
@@ -10,12 +12,4 @@
   &:last-child {
     border-radius: 0 0 5px 5px;
   }
-}
-
-.spy {
-  background: #00b894;
-}
-
-.guard {
-  background: #ff7675;
 }
