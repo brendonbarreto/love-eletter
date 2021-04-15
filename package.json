@@ -13,7 +13,9 @@
     "lint:server": "cd server && npm run lint",
     "lint:ui": "cd ui && npm run lint",
     "lint": "npm run lint:server && npm run lint:ui",
-    "start": "cd ui && npm run start"
+    "start:ui": "cd ui && npm run start",
+    "start:server": "cd server && npm run start",
+    "start": "concurrently \"npm:start:ui\" \"npm:start:server\""
   },
   "repository": {
     "type": "git",
@@ -27,10 +29,7 @@
   },
   "homepage": "https://github.com/brendonbarreto/love-eletter#readme",
   "devDependencies": {
+    "concurrently": "^6.0.1",
     "node-sass": "^5.0.0"
-  },
-  "dependencies": {
-    "classnames": "^2.3.1",
-    "react-icons": "^4.2.0"
   }
 }
