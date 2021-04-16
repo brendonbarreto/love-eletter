@@ -1,0 +1,15 @@
+.joinRoom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
+}
