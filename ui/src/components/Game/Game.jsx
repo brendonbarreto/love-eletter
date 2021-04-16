@@ -1,13 +1,23 @@
+import { useEffect, useState } from 'react'
+import io from 'socket.io-client'
+
 import styles from './Game.module.scss'
 import FaceUpCards from '../FaceUpCards'
-
 import Hand from '../Hand'
 import Board from '../Board'
 import { Character } from '../../cards'
 
-const Game = () => (
-  <div className={styles.game}>
-    <Board />
+const Game = () => {
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    const socket = io('http://localhost:8000')
+
+    socket.on('message', message => setMessage(message))
+  }, [])
+
+  return <div className={styles.game}>
+    <Board/>
 
     <FaceUpCards cards={[
       {
@@ -20,7 +30,7 @@ const Game = () => (
         character: Character.KING,
         value: 7
       }
-    ]} />
+    ]}/>
 
     <Hand cards={[{
       character: Character.SPY,
@@ -52,8 +62,8 @@ const Game = () => (
     }, {
       character: Character.PRINCESS,
       value: 9
-    }]} />
+    }]}/>
   </div>
-)
+}
 
 export default Game
