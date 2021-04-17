@@ -1,13 +1,16 @@
 const users = []
 
 const userJoin = (id, roomId, name, email, imageUrl) => {
-  users.push({
+  const user = {
     id,
     roomId,
     name,
     email,
     imageUrl
-  })
+  }
+  users.push(user)
+
+  return user
 }
 
 const userLeave = id => {

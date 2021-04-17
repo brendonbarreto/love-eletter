@@ -28,8 +28,9 @@ io.on('connection', socket => {
     }
 
     const roomId = Math.random().toString(36).substr(2, 9)
-    userJoin(socket.id, roomId, name, email, imageUrl)
-    console.log('blabla')
+    const user = userJoin(socket.id, roomId, name, email, imageUrl)
+
+    socket.emit('joinedRoom', roomId)
   })
 
   socket.on('disconnect', () => {
