@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
 
 import styles from './App.module.scss'
@@ -9,15 +9,26 @@ const App = () => {
   const [message, setMessage] = useState('')
   const [roomCode, setRoomCode] = useState('')
   const [profile, setProfile] = useState({})
+  const [socket, setSocket] = useState({})
 
   useEffect(() => {
-    const socket = io('http://localhost:8000')
-
-    socket.on('message', message => setMessage(message))
+    setSocket(
+      io('http://localhost:8000')
+        .on('message', message => setMessage(message))
+    )
   }, [])
 
   const onAuthenticatedSuccessfully = profile => {
+    console.log(profile)
     setProfile(profile)
+  }
+
+  const createRoom = () => {
+    socket.emit('createRoom', {
+      name: profile.name,
+      imageUrl: profile.imageUrl,
+      email: profile.email
+    })
   }
 
   return (
@@ -29,6 +40,7 @@ const App = () => {
                 profile={profile}
                 roomCode={roomCode}
                 onChangeRoomCode={roomCode => setRoomCode(roomCode)}
+                createRoom={createRoom}
             />
             )
           : (

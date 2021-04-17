@@ -1,6 +1,6 @@
 import styles from './JoinRoom.module.scss'
 
-const JoinRoom = ({ profile, roomCode, onChangeRoomCode }) => {
+const JoinRoom = ({ profile, roomCode, onChangeRoomCode, createRoom }) => {
   return <div className={styles.joinRoom}>
     <img src={profile.imageUrl} alt="profile" />
     <input
@@ -9,7 +9,10 @@ const JoinRoom = ({ profile, roomCode, onChangeRoomCode }) => {
         type="text"
         placeholder="Room code"
     />
-    <button type="button">Join!</button>
+    <div className={styles.actions}>
+      <button type="button">Join!</button>
+      <button onClick={createRoom} type="button">Create Room</button>
+    </div>
   </div>
 }
 

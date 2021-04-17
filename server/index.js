@@ -1,6 +1,7 @@
 const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
+const { userJoin, getUserByEmail, userLeave } = require('./users')
 
 const app = express()
 const server = http.createServer(app)
@@ -19,4 +20,19 @@ io.on('connection', socket => {
   console.log('New WS Connection...')
 
   socket.emit('message', 'Welcome!')
+
+  socket.on('createRoom', ({ name, imageUrl, email }) => {
+    if (getUserByEmail(email)) {
+      console.log('User already joined.')
+      return
+    }
+
+    const roomId = Math.random().toString(36).substr(2, 9)
+    userJoin(socket.id, roomId, name, email, imageUrl)
+    console.log('blabla')
+  })
+
+  socket.on('disconnect', () => {
+    userLeave(socket.id)
+  })
 })
