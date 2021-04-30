@@ -1,6 +1,7 @@
 const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
+const {roomExists} = require('./rooms')
 const { userJoin, getUserByEmail, userLeave } = require('./users')
 
 const app = express()
@@ -28,6 +29,23 @@ io.on('connection', socket => {
     }
 
     const roomId = Math.random().toString(36).substr(2, 9)
+    console.log(roomId)
+    const user = userJoin(socket.id, roomId, name, email, imageUrl)
+
+    socket.emit('joinedRoom', roomId)
+  })
+
+  socket.on('joinRoom', ({ name, imageUrl, email, roomId }) => {
+    if (getUserByEmail(email)) {
+      console.log('User already joined.')
+      return
+    }
+
+    if (!roomExists(roomId)) {
+      console.log('Unavailable room.')
+      return
+    }
+
     const user = userJoin(socket.id, roomId, name, email, imageUrl)
 
     socket.emit('joinedRoom', roomId)

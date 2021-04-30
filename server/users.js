@@ -22,8 +22,11 @@ const userLeave = id => {
 
 const getUserByEmail = email => users.find(user => user.email === email)
 
+const getAllUsers = () => [...users]
+
 module.exports = {
   userJoin,
   getUserByEmail,
-  userLeave
+  userLeave,
+  getAllUsers
 }

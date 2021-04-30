@@ -7,8 +7,6 @@ import JoinRoom from '../JoinRoom'
 import Game from '../Game'
 
 const App = () => {
-  const [message, setMessage] = useState('')
-  const [roomCode, setRoomCode] = useState('')
   const [profile, setProfile] = useState({})
   const [socket, setSocket] = useState({})
   const [room, setRoom] = useState(null)
@@ -16,7 +14,6 @@ const App = () => {
   useEffect(() => {
     setSocket(
       io('http://localhost:8000')
-        .on('message', message => setMessage(message))
         .on('joinedRoom', (room) => {
           console.log(room)
           setRoom(room)
@@ -37,6 +34,15 @@ const App = () => {
     })
   }
 
+  const joinRoom = roomId => {
+    socket.emit('joinRoom', {
+      name: profile.name,
+      imageUrl: profile.imageUrl,
+      email: profile.email,
+      roomId
+    })
+  }
+
   return (
     room
       ? (
@@ -49,8 +55,7 @@ const App = () => {
               ? (
                 <JoinRoom
                     profile={profile}
-                    roomCode={roomCode}
-                    onChangeRoomCode={roomCode => setRoomCode(roomCode)}
+                    joinRoom={joinRoom}
                     createRoom={createRoom}
                 />
                 )
