@@ -17,12 +17,13 @@ const App = () => {
       io('http://localhost:8000')
         .on('joinedRoom', ({ roomId, game }) => {
           console.log(`Joined, room ${roomId}`)
+          setGame(game)
+          console.log('Profile:', profile)
           setRoom(roomId)
           console.log('Game:', game)
-          setGame(game)
         })
     )
-  }, [])
+  }, [profile])
 
   const onAuthenticatedSuccessfully = profile => {
     console.log(profile)
@@ -49,7 +50,7 @@ const App = () => {
   return (
     room
       ? (
-        <Game game={game} />
+        <Game game={game} email={profile.email} />
         )
       : (
         <div className={styles.app}>
