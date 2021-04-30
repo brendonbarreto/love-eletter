@@ -10,13 +10,16 @@ const App = () => {
   const [profile, setProfile] = useState({})
   const [socket, setSocket] = useState({})
   const [room, setRoom] = useState(null)
+  const [game, setGame] = useState(null)
 
   useEffect(() => {
     setSocket(
       io('http://localhost:8000')
-        .on('joinedRoom', (room) => {
-          console.log(room)
-          setRoom(room)
+        .on('joinedRoom', ({ roomId, game }) => {
+          console.log(`Joined, room ${roomId}`)
+          setRoom(roomId)
+          console.log('Game:', game)
+          setGame(game)
         })
     )
   }, [])
@@ -46,7 +49,7 @@ const App = () => {
   return (
     room
       ? (
-        <Game />
+        <Game game={game} />
         )
       : (
         <div className={styles.app}>

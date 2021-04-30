@@ -1,4 +1,4 @@
-const { getCards } = require('./cards')
+import { getCards } from './cards'
 
 export const getNewDeck = () => {
   const cards = getCards()

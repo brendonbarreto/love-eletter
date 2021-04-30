@@ -1,12 +1,13 @@
-const express = require('express')
-const http = require('http')
-const socketio = require('socket.io')
-const {roomExists} = require('./rooms')
-const { userJoin, getUserByEmail, userLeave } = require('./users')
+import express from 'express'
+import http from 'http'
+import { Server } from 'socket.io'
+import { getGame, startNewGame } from './games'
+import { roomExists } from './rooms.js'
+import { userJoin, getUserByEmail, userLeave } from './users.js'
 
 const app = express()
 const server = http.createServer(app)
-const io = socketio(server, {
+const io = new Server(server, {
   cors: {
     origin: '*',
     methods: ['GET', 'POST']
@@ -32,7 +33,10 @@ io.on('connection', socket => {
     console.log(roomId)
     const user = userJoin(socket.id, roomId, name, email, imageUrl)
 
-    socket.emit('joinedRoom', roomId)
+    socket.emit('joinedRoom', {
+      game: startNewGame(roomId),
+      roomId
+    })
   })
 
   socket.on('joinRoom', ({ name, imageUrl, email, roomId }) => {
@@ -48,7 +52,10 @@ io.on('connection', socket => {
 
     const user = userJoin(socket.id, roomId, name, email, imageUrl)
 
-    socket.emit('joinedRoom', roomId)
+    socket.emit('joinedRoom', {
+      game: getGame(roomId),
+      roomId
+    })
   })
 
   socket.on('disconnect', () => {

@@ -1,7 +1,5 @@
-const { getAllUsers } = require('./users')
+import { getAllUsers } from './users'
 
-const roomExists = roomId => getAllUsers().some(user => user.roomId === roomId)
+export const roomExists = roomId => getAllUsers().some(user => user.roomId === roomId)
 
-module.exports = {
-  roomExists
-}
+export const getUsers = roomId => getAllUsers().filter(user => user.roomId === roomId)

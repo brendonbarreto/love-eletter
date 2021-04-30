@@ -7,7 +7,7 @@ import Hand from '../Hand'
 import Board from '../Board'
 import { Character } from '../../cards'
 
-const Game = () => {
+const Game = ({ game }) => {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
