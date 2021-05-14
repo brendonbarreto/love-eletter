@@ -14,6 +14,7 @@ export const start = playerInfos => {
     deck: remaining,
     removedCard: card,
     players: players,
-    turns: []
+    turns: [],
+    started: false
   }
 }

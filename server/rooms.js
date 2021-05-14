@@ -1,5 +1,28 @@
-import { getAllUsers } from './users'
+const rooms = []
 
-export const roomExists = roomId => getAllUsers().some(user => user.roomId === roomId)
+export const createRoom = (roomId, player) => {
+    const room = {
+        id: roomId,
+        players: [{ ...player }],
+        games: [],
+        started: false
+    }
 
-export const getUsers = roomId => getAllUsers().filter(user => user.roomId === roomId)
+    rooms.push(room)
+
+    return room
+}
+
+export const addPlayer = (roomId, player) => {
+    const room = getRoom(roomId)
+    room.players.push(player)
+}
+
+export const roomExists = roomId => rooms.some(room => room.id === roomId)
+
+export const getRoom = roomId => rooms.find(a => a.id === roomId)
+
+export const getPlayers = roomId => {
+    const room = getRoom(roomId)
+    return room ? room.players : []
+}

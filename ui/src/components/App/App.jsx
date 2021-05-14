@@ -5,22 +5,23 @@ import styles from './App.module.scss'
 import LoginButton from '../LoginButton'
 import JoinRoom from '../JoinRoom'
 import Game from '../Game'
+import Room from '../Room'
 
 const App = () => {
   const [profile, setProfile] = useState({})
   const [socket, setSocket] = useState({})
   const [room, setRoom] = useState(null)
-  const [game, setGame] = useState(null)
+  // const [game, setGame] = useState(null)
 
   useEffect(() => {
     setSocket(
       io('http://localhost:8000')
-        .on('joinedRoom', ({ roomId, game }) => {
-          console.log(`Joined, room ${roomId}`)
-          setGame(game)
+        .on('joinedRoom', (room) => {
+          console.log(`Joined, room ${room.id}`)
+          // setGame(game)
           console.log('Profile:', profile)
-          setRoom(roomId)
-          console.log('Game:', game)
+          setRoom(room)
+          console.log('Room:', room)
         })
     )
   }, [profile])
@@ -50,7 +51,7 @@ const App = () => {
   return (
     room
       ? (
-        <Game game={game} email={profile.email} />
+        <Room room={room} />
         )
       : (
         <div className={styles.app}>

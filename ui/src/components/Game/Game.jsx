@@ -6,6 +6,7 @@ import FaceUpCards from '../FaceUpCards'
 import Hand from '../Hand'
 import Board from '../Board'
 import { Character } from '../../cards'
+import Room from '../Room'
 
 const Game = ({ game, email }) => {
   const [message, setMessage] = useState('')
@@ -16,6 +17,8 @@ const Game = ({ game, email }) => {
 
     socket.on('message', message => setMessage(message))
   }, [])
+
+  if (!game.started) return <Room game={game} />
 
   return <div className={styles.game}>
     <Board deck={game.deck}/>

@@ -2,7 +2,7 @@ import express from 'express'
 import http from 'http'
 import { Server } from 'socket.io'
 import { getGame, startNewGame } from './games'
-import { roomExists } from './rooms.js'
+import { addPlayer, createRoom, roomExists } from './rooms.js'
 import { userJoin, getUserByEmail, userLeave } from './users.js'
 
 const app = express()
@@ -32,10 +32,10 @@ io.on('connection', socket => {
     const roomId = Math.random().toString(36).substr(2, 9)
     console.log(roomId)
     const user = userJoin(socket.id, roomId, name, email, imageUrl)
+    const room = createRoom(roomId, user)
 
     socket.emit('joinedRoom', {
-      game: startNewGame(roomId),
-      roomId
+      room
     })
   })
 
@@ -51,10 +51,10 @@ io.on('connection', socket => {
     }
 
     const user = userJoin(socket.id, roomId, name, email, imageUrl)
+    const room = addPlayer(roomId, user)
 
     socket.emit('joinedRoom', {
-      game: getGame(roomId),
-      roomId
+      room
     })
   })
 
