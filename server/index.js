@@ -34,9 +34,7 @@ io.on('connection', socket => {
     const user = userJoin(socket.id, roomId, name, email, imageUrl)
     const room = createRoom(roomId, user)
 
-    socket.emit('joinedRoom', {
-      room
-    })
+    socket.emit('joinedRoom', room)
   })
 
   socket.on('joinRoom', ({ name, imageUrl, email, roomId }) => {
@@ -53,9 +51,7 @@ io.on('connection', socket => {
     const user = userJoin(socket.id, roomId, name, email, imageUrl)
     const room = addPlayer(roomId, user)
 
-    socket.emit('joinedRoom', {
-      room
-    })
+    socket.emit('joinedRoom', room)
   })
 
   socket.on('disconnect', () => {

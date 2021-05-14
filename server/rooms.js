@@ -16,6 +16,7 @@ export const createRoom = (roomId, player) => {
 export const addPlayer = (roomId, player) => {
     const room = getRoom(roomId)
     room.players.push(player)
+    return room
 }
 
 export const roomExists = roomId => rooms.some(room => room.id === roomId)

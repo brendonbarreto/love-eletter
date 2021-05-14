@@ -16,12 +16,10 @@ const App = () => {
   useEffect(() => {
     setSocket(
       io('http://localhost:8000')
-        .on('joinedRoom', (room) => {
-          console.log(`Joined, room ${room.id}`)
-          // setGame(game)
-          console.log('Profile:', profile)
-          setRoom(room)
-          console.log('Room:', room)
+        .on('joinedRoom', (r) => {
+          console.log(`Joined, room ${r.id}`)
+          console.log('Room:', r)
+          setRoom(r)
         })
     )
   }, [profile])

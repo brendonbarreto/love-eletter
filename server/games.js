@@ -1,11 +1,11 @@
 import { start } from './core/game'
-import { getUsers } from './rooms'
+import { getPlayers } from './rooms'
 const games = {}
 
 export const startNewGame = roomId => {
-  const users = getUsers(roomId)
+  const players = getPlayers(roomId)
 
-  const game = start(users)
+  const game = start(players)
   games[roomId] = game
 
   return game
