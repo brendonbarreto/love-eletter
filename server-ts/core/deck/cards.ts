@@ -1,4 +1,4 @@
-import { isDeepStrictEqual } from 'util';
+import { isDeepStrictEqual } from 'util'
 
 export enum Character {
   SPY = 'Spy',
@@ -13,14 +13,14 @@ export enum Character {
   PRINCESS = 'Princess'
 }
 
-export type CardValues = 0|1|2|3|4|5|6|7|8|9;
+export type CardValues = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
-export type CardCopies = 1|2|6;
+export type CardCopies = 1 | 2 | 6
 
 export interface Card {
-  character: Character;
-  copies: CardCopies;
-  value: CardValues;
+  character: Character
+  copies: CardCopies
+  value: CardValues
 }
 
 export const getSpy = (): Card => ({
@@ -96,22 +96,24 @@ export const getCards = (): Card[] => [
   getPrincess()
 ]
 
-export const is = (card: Card | undefined, character: Character) => {
+export const is = (card: Card | undefined, character: Character): boolean => {
   const cardToCompare = getCardByCharacter(character)
 
   return isDeepStrictEqual(card, cardToCompare)
 }
 
 export const getCardByCharacter = (character: Character): Card => {
-  const card = getCards().find(card => card.character === character)
-  if (card === undefined) throw new Error(`Could not find a card for ${character} character.`)
+  const card = getCards().find((card) => card.character === character)
+  if (card === undefined)
+    throw new Error(`Could not find a card for ${character} character.`)
 
   return card
 }
 
 export const getCardByValue = (value: CardValues): Card => {
-  const card = getCards().find(card => card.value === value)
-  if (card === undefined) throw new Error(`Could not find a card with value ${value}.`)
+  const card = getCards().find((card) => card.value === value)
+  if (card === undefined)
+    throw new Error(`Could not find a card with value ${value}.`)
 
   return card
 }

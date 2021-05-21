@@ -10,7 +10,7 @@ import {
 
 describe('cards', () => {
   describe('getCardByCharacter', () => {
-    it.each(Object.values(Character))('should return %p', character => {
+    it.each(Object.values(Character))('should return %p', (character) => {
       const card = getCardByCharacter(character)
 
       expect(is(card, character)).toBe(true)
@@ -18,7 +18,12 @@ describe('cards', () => {
   })
 
   describe('getCardByValue', () => {
-    it.each(getCards().map((card): [Character, CardValues] => [card.character, card.value]))('should return %p when value is %p', (character, value) => {
+    it.each(
+      getCards().map((card): [Character, CardValues] => [
+        card.character,
+        card.value
+      ])
+    )('should return %p when value is %p', (character, value) => {
       const card = getCardByValue(value)
 
       expect(is(card, character)).toBe(true)
@@ -26,10 +31,10 @@ describe('cards', () => {
   })
 
   describe('getCards', () => {
-    it.each(Object.values(Character))('should include %p card', character => {
+    it.each(Object.values(Character))('should include %p card', (character) => {
       const cards = getCards()
 
-      expect(cards.map(card => card.character)).toContain(character)
+      expect(cards.map((card) => card.character)).toContain(character)
     })
   })
 

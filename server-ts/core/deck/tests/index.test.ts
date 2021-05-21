@@ -1,5 +1,12 @@
 import { pickCardFromTop, getNewDeck } from '..'
-import {getSpy, getPrincess, is, Character, getCards, CardCopies} from '../cards'
+import {
+  getSpy,
+  getPrincess,
+  is,
+  Character,
+  getCards,
+  CardCopies
+} from '../cards'
 
 describe('deck', () => {
   describe('pickCardFromTop', () => {
@@ -32,16 +39,23 @@ describe('deck', () => {
       expect(deck).toHaveLength(21)
     })
 
-    it.each(getCards().map((card): [CardCopies, Character] => [card.copies, card.character]))('should include %p copies of %p', (copies, character) => {
+    it.each(
+      getCards().map((card): [CardCopies, Character] => [
+        card.copies,
+        card.character
+      ])
+    )('should include %p copies of %p', (copies, character) => {
       const deck = getNewDeck()
 
-      expect(deck.filter(card => card.character === character)).toHaveLength(copies)
+      expect(deck.filter((card) => card.character === character)).toHaveLength(
+        copies
+      )
     })
 
     it('should sort deck', () => {
       const deck = getNewDeck()
 
-      const values = deck.map(card => card.value)
+      const values = deck.map((card) => card.value)
       expect(values).not.toStrictEqual([...values].sort((a, b) => a - b))
     })
   })

@@ -1,16 +1,20 @@
-import {Card, getCards} from './cards'
+import { Card, getCards } from './cards'
 
 export const getNewDeck = (): Card[] => {
   const cards = getCards()
-    const deck = cards.reduce((deck: Card[], card: Card) => {
-        const cardCopies: Card[] = Array.from({ length: card.copies }, () => ({ ...card }))
-        return deck.concat(cardCopies)
-    }, [])
+  const deck = cards.reduce((deck: Card[], card: Card) => {
+    const cardCopies: Card[] = Array.from({ length: card.copies }, () => ({
+      ...card
+    }))
+    return deck.concat(cardCopies)
+  }, [])
 
   return sortDeck(deck)
 }
 
-export const pickCardFromTop = (deck: Card[]) => {
+export const pickCardFromTop = (
+  deck: Card[]
+): { card: Card; remaining: Card[] } => {
   const cardsFromTop = pickCardsFromTop(deck, 1)
 
   return {
@@ -19,14 +23,18 @@ export const pickCardFromTop = (deck: Card[]) => {
   }
 }
 
-export const pickCardsFromTop = (deck: Card[], quantity: number) => {
+export const pickCardsFromTop = (
+  deck: Card[],
+  quantity: number
+): { cards: Card[]; remaining: Card[] } => {
   const deckCopy = [...deck]
   const cardsPicked = deckCopy.splice(deck.length - quantity, quantity)
 
   return {
-    cards: cardsPicked.map(card => ({ ...card })),
+    cards: cardsPicked.map((card) => ({ ...card })),
     remaining: deckCopy
   }
 }
 
-export const sortDeck = (deck: Card[]): Card[] => deck.sort(() => Math.random() - 0.5)
+export const sortDeck = (deck: Card[]): Card[] =>
+  deck.sort(() => Math.random() - 0.5)
