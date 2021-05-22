@@ -4,17 +4,17 @@
   "description": "Digital version of Love Letter",
   "main": "index.js",
   "scripts": {
-    "install:server": "cd server-ts && npm install",
+    "install:server": "cd server && npm install",
     "install:ui": "cd ui && npm install",
     "postinstall": "npm run install:server && npm run install:ui",
-    "test:server": "cd server-ts && npm test",
+    "test:server": "cd server && npm test",
     "test:ui": "cd ui && npm test",
     "test": "npm run test:server && npm run test:ui",
-    "lint:server": "cd server-ts && npm run lint",
+    "lint:server": "cd server && npm run lint",
     "lint:ui": "cd ui && npm run lint",
     "lint": "npm run lint:server && npm run lint:ui",
     "start:ui": "cd ui && npm run start",
-    "start:server": "cd server-ts && npm run start",
+    "start:server": "cd server && npm run start",
     "start": "concurrently \"npm:start:ui\" \"npm:start:server\""
   },
   "repository": {
